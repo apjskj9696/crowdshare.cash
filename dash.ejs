@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<script>
+			'fetch' in window && 'CSS' in window && CSS.supports('color', 'var(--)') ? '' : location.href = '/badbrowser/'
+		</script>
+		<title>CrowdSharing ETH</title>
+
+		<link rel="preconnect" href="https://mainnet.infura.io/v3/f0b5d9715499406887ef2fb2b697222e">
+		<link rel="dns-prefetch" href="https://mainnet.infura.io/v3/f0b5d9715499406887ef2fb2b697222e">
+
+		<link rel="stylesheet" href="./assets/css/bootstrap.min.css" >
+			<link rel="icon" type="image/png" href="/icon.png">
+		<link rel="stylesheet" href="/assets/css/common.css">
+		<link rel="stylesheet" href="/assets/css/common(1).css">
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=12.0, minimum-scale=.25, user-scalable=yes"/>
+		<link rel="stylesheet" href="/assets/css/jquery.fancybox.min.css">
+		<link rel="stylesheet" href="/css/toastr.min.css">
+		<link href="https://cdn.jsdelivr.net/npm/@sweetalert2/theme-dark@3/dark.css" rel="stylesheet">
+		<script src="https://cdn.jsdelivr.net/npm/sweetalert2@9/dist/sweetalert2.min.js"></script>
+		<link href="https://fonts.googleapis.com/css2?family=Lora&display=swap" rel="stylesheet">
+		<style type="text/css">
+			@keyframes chartjs-render-animation {
+			from {
+			opacity: .99
+			}
+			to {
+			opacity: 1
+			}
+			}
+			.chartjs-render-monitor {
+			animation: chartjs-render-animation 1ms
+			}
+			select {
+				-webkit-appearance: none;
+				-moz-appearance: none;
+				-ms-appearance: none;
+				appearance: none;
+				outline: 0;
+				box-shadow: none;
+				border: 0 !important;
+				background: rgb(1, 13, 43);;
+				background-image: none;
+				padding: 8px !important;
+				}
+				/* Remove IE arrow */
+				select::-ms-expand {
+				display: none;
+				}
+				/* Custom Select */
+				.select {
+				position: relative;
+				display: flex;
+				width: 20em;
+				height: 3em;
+				line-height: 3;
+				background:  #010d2b;
+				overflow: hidden;
+				border-radius: .25em;
+				}
+				select {
+				flex: 1;
+				padding: 0 .5em;
+				color: #fff;
+				cursor: pointer;
+				}
+				/* Arrow */
+				.select::after {
+				content: '\25BC';
+				position: absolute;
+				top: 0;
+				right: 0;
+				padding: 0 1em;
+				background:  #010d2b;
+				cursor: pointer;
+				pointer-events: none;
+				-webkit-transition: .25s all ease;
+				-o-transition: .25s all ease;
+				transition: .25s all ease;
+				}
+				/* Transition */
+				.select:hover::after {
+				color: #f39c12;
+				}
+
+
+
+		</style>
+		</script>
+		<!-- Global site tag (gtag.js) - Google Analytics -->
+	  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-156890005-1"></script>
+	  <script>
+		window.dataLayer = window.dataLayer || [];
+		function gtag(){dataLayer.push(arguments);}
+		gtag('js', new Date());
+
+		gtag('config', 'UA-156890005-1');
+	  </script>
+	</head>
+	<body>
+		<div class="loader-div">
+			<span class="loader">
+			  <span></span>
+			  <span></span>
+			</span>
+		  </div>
+		<% include partials/modal.ejs %>
+		<div class="layout">
+			<div class="aside" style=" background-color:  #010d2b; ">
+				<a class="aside__logo" href="#" style="background-color: #010d2b"><img src="landing/img/logo.png" alt="logo" style="width: 300px;"></a>
+				<div class="aside__nav">
+					<label>The account menu</label>
+					<a href="/dash" class="active"><i class="fa fa-fw fa-user-circle"></i><span>Dashboard</span></a>
+					<a href="/partners"><i class="fa fa-fw fa-network-wired"></i><span>My Structure</span></a>
+					<a href="/uplines" class=""><i class="fa fa-fw fa-users"></i><span>Uplines</span></a>
+					<a href="/lostProfits"><i class="fa fa-fw fa-search-dollar"></i><span>Lost Profits</span></a>
+					<a href="/referrals"><i class="fa fa-fw fa-network-wired"></i><span>Direct Sponsors</span></a>
+					<a href="/earnings"><i class="fa fa-fw fa-money"></i><span>My Earnings</span></a>
+
+					<a href="/inbox">
+						<i class="fa fa-fw fa-envelope">
+							<span class="badge badge-light" id="msgCount" style="background: #00adff;position:relative;top: -5px;left: 11px;display: block;max-width: fit-content;font-family: 'Montserrat';font-weight: bold;">0</span>
+						</i>
+						<span>&nbsp;Your Inbox</span>
+					</a>
+					<!--<a onclick="toggleAudio()">
+						<i id="muteButtonIcon" class="fa fa-volume-up"></i>
+						<span style="color: #25b7b9;" id="muteButtonText">Mute Audio</span>
+					</a>-->
+					<a href="https://t.me/crowdsharing" target= _blank>
+						<i class="fab fa-telegram"></i>
+						<span>&nbsp;Telegram</span>
+					</a>
+					<a href="http://t.me/crowdsharing_customer_support" target= _blank>
+						<i class="fa fa-question"></i>
+						<span>&nbsp;Customer Support</span>
+					</a>
+				</div>
+			</div>
+			<div class="main">
+				<div class="header">
+					<div class="header__block" style="width: 20%">
+						<div class="header__label"><span><i class="far fa-id-card"></i></span>&nbsp;ID:</div>
+						<div class="header__value primary"  id="userId"> 1</div>
+					</div>
+					<div class="header__block header__block_grow">
+						<div class="header__label"><i class="fab fa-ethereum"></i>&nbsp;ETH Wallet</div>
+						<div class="header__value primary"><span class="addr" id="addr">0x0</span>&nbsp;</div>
+					</div>
+					<div id="google_translate_element" style=" padding: 10px; "></div>
+				</div>
+
+				<div class="content">
+					<div class="page">
+						<h1 class="page__title">
+							CrowdSharing ETH
+							<span style="float: right;font-size: medium;padding-top: 5px;" id="rate"></span>
+						</h1>
+
+						<div class="page__body">
+							<div class="info-blocks">
+								<div class="info-blocks__item">
+									<div class="info-blocks__label">Total Earning in ETH</div>
+									<img src="/assets/img/info-block1.png"
+										class="info-blocks__icon">
+									<div class="info-blocks__footer">
+										<div class="info-blocks__value 0" id="ethTotal">0 ETH</div>
+										<div id="output"></div>
+									</div>
+								</div>
+								<div class="info-blocks__item">
+									<div class="info-blocks__label">ETH Earnings from Levels</div>
+									<img src="/assets/img/info-block5.png"
+										class="info-blocks__icon">
+									<div class="info-blocks__footer">
+										<div class="info-blocks__value 0" id="ethEarnedLev">0 ETH</div>
+										<div id="output"></div>
+									</div>
+								</div>
+								<div class="info-blocks__item">
+									<div class="info-blocks__label">ETH Earnings from Direct sponsors</div>
+									<img src="/assets/img/info-block5.png"
+										class="info-blocks__icon">
+									<div class="info-blocks__footer">
+										<div class="info-blocks__value 0" id="ethEarnedSpon">0 ETH</div>
+										<div id="output"></div>
+									</div>
+								</div>
+								<div class="info-blocks__item">
+									<div class="info-blocks__label">Direct Sponsors</div>
+									<img
+										src="/assets/img/info-block3.png" class="info-blocks__icon">
+									<div class="info-blocks__footer">
+										<div class="info-blocks__value"  id="partners">0</div>
+									</div>
+								</div>
+								<div class="info-blocks__item">
+									<div class="info-blocks__label">Tron Address</div>
+									<div>
+										<div class="partner__link">
+											<input readonly="readonly" name='Tron_address' id="Tron_address" value="Loading ... " class="inp">
+											<button style=" margin-left: 10px; " onclick="_Add_UpdateTRXAddress()" class="btn btn_primary"><i class="fa fa-plus"></i></button>
+										</div>
+									</div>
+								</div>
+								<div class="info-blocks__item">
+									<div class="info-blocks__label">Current Level</div>
+									<img src="/assets/img/info-block4.png"
+										class="info-blocks__icon">
+									<div class="info-blocks__footer">
+										<div class="info-blocks__value" id="userLevel">0</div>
+									</div>
+								</div>
+								<div class="info-blocks__item">
+									<div class="info-blocks__label">Total Users</div>
+									<img src="/assets/img/info-block4.png"
+										class="info-blocks__icon">
+									<div class="info-blocks__footer">
+										<div class="info-blocks__value" id="totalUsers">0</div>
+									</div>
+								</div>
+								<div class="info-blocks__item">
+									<div class="info-blocks__label">Total ETH Earned by Members</div>
+									<img src="/assets/img/info-block5.png"
+										class="info-blocks__icon">
+									<div class="info-blocks__footer">
+										<div class="info-blocks__value 0" id="totalEarnMem">0 ETH</div>
+										<div id="output"></div>
+									</div>
+								</div>
+								<div class="info-blocks__item">
+									<div class="info-blocks__label">Users Registered in Past 24hrs</div>
+									<img src="/assets/img/info-block8.png"
+										class="info-blocks__icon">
+									<div class="info-blocks__footer">
+										<div class="info-blocks__value 0" id="memReg24">0</div>
+										<div id="output"></div>
+									</div>
+								</div>
+								<div class="info-blocks__item">
+									<div class="info-blocks__label">Members in my Structure
+										<p style="font-size:10px;">(upto 15 levels) Refreshes every 4 hours</p>
+									</div>
+
+									<img src="/assets/img/info-block7.png"
+										class="info-blocks__icon">
+									<div class="info-blocks__footer">
+										<div class="info-blocks__value 0" id="structCount">0</div>
+										<div id="output"></div>
+									</div>
+								</div>
+								<div class="info-blocks__item">
+									<div class="info-blocks__label">Your Referral Link</div>
+									<div>
+										<div class="partner__link">
+											<input readonly="readonly" id="rlink" value="Loading ... " class="inp">
+											<button style=" margin-left: 10px; " onclick="copyText(document.getElementById(&#39;rlink&#39;))" class="btn btn_primary"><i class="fa fa-fw fa-copy"></i></button>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="info-charts" >
+								<div class="block fix500 hidden" id="earningsTabMat2">
+									<div class="block__title">ETH Earnings by Level</div>
+									<div class="block__body">
+										<canvas id="earningsChart" style="display: block; width: 525px; height: 262px;"></canvas>
+									</div>
+								</div>
+								<div class="block fix500 " id="usersOnLevel">
+									<div class="block__title">User Level Distribution</div>
+									<div class="block__body">
+										<canvas id="usersOnLevelChart"></canvas>
+									</div>
+								</div>
+							</div>
+							<br/>
+							<div class="block" id="earningAlert"  style="display:none;">
+								<div class="block__body" id="earningAlertTitle" style="color:#25b7b9;"></div>
+							</div>
+							<h5 style="color:#35a7e9;padding-top :30px;">Levels</h5>
+							<ul class="levels" id="userlevels">
+							</ul>
+						</div>
+					</div>
+				</div>
+				<% include partials/footer.ejs %>
+			</div>
+		</div>
+
+		<script src="/assets/js/jquery.min.js"></script>
+		<script src="/assets/js/bootstrap.min.js"></script>
+		<script src="/assets/js/jquery.fancybox.min.js"></script>
+		<script src="/assets/js/Chart.min.js"></script>
+		<script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@0.7.0"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+		<script>
+		toastr.options = {
+			"closeButton": true,"debug": false,"newestOnTop": false,
+			"progressBar": true,"positionClass": "toast-bottom-right","preventDuplicates": true,
+			"onclick": null,"showDuration": "300","hideDuration": "1000",
+			"timeOut": "10000","extendedTimeOut": "1000","showEasing": "swing",
+			"hideEasing": "linear","showMethod": "fadeIn","hideMethod": "fadeOut"
+		}
+		</script>
+		<script src="/js/cs.globals.min.js"></script>
+		<script src="/js/cs.contract.js"></script>
+		<script src="/js/cs.dash.js"></script>
+		<script src="/js/cs.app.min.js"></script>
+        <script>
+		async function _Add_UpdateTRXAddress(){
+		
+		// const data = await Swal.fire({
+
+		// 	input: 'email',
+		// 	inputPlaceholder: 'Enter your email address'
+		// })
+		let uid= await userAddressToId(web3.eth.accounts[0]);
+		let address = web3.eth.accounts[0];
+        var Tron_address = document.getElementById("Tron_address").innerText;
+		if (formValues) {
+			console.log(formValues);
+			let userInfo = {Tron_address: Tron_address, uid : uid, ETH_address: web3.eth.accounts[0]};
+			console.log(userInfo);
+			$.ajax({
+				type: "POST",
+				url: '/user/save/',
+				data: userInfo,
+				success: function (data) {
+                	
+            	}
+			});
+		}
+	}
+		</script>
+		<script type="text/javascript">
+			function googleTranslateElementInit() {
+				new google.translate.TranslateElement({pageLanguage: 'en'}, 'google_translate_element');
+			}
+		</script>
+		<script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+	</body>
+</html>
